@@ -1,4 +1,5 @@
-﻿using LojaProdutos.Services.Categoria;
+﻿using LojaProdutos.Dto.Produto;
+using LojaProdutos.Services.Categoria;
 using LojaProdutos.Services.Produto;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,6 +27,12 @@ namespace LojaProdutos.Controllers
 
             ViewBag.Categorias = await _categoriaInterface.BuscarCategorias();
 
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Cadastrar(CriarProdutoDto criarProdutoDto, IFormFile foto)
+        {
             return View();
         }
     }
