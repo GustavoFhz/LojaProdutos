@@ -10,8 +10,7 @@ namespace LojaProdutos.Dto.Produto
         public string Nome { get; set; }
         [Required(ErrorMessage = "Digite a marca!")]
         public string Marca { get; set; }
-        [Required(ErrorMessage = "Insira a foto!")]
-        public string Foto { get; set; }
+        public string? Foto { get; set; }
         [Required(ErrorMessage = "Insira o valor!")]
         public double Valor { get; set; }
         [Required(ErrorMessage = "Insira a quantidade em estoque!")]

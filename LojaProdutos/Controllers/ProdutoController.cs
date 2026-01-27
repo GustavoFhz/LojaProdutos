@@ -33,7 +33,16 @@ namespace LojaProdutos.Controllers
         [HttpPost]
         public async Task<IActionResult> Cadastrar(CriarProdutoDto criarProdutoDto, IFormFile foto)
         {
-            return View();
+            if(ModelState.IsValid) //Valida os ErrosMessage
+            {
+                var produto = await _produtoInterface.Cadastrar(criarProdutoDto, foto);
+                return RedirectToAction("Index", "Produto");
+            }
+            else
+            {
+                ViewBag.Categorias = await _categoriaInterface.BuscarCategorias();
+                return View(criarProdutoDto);
+            }
         }
     }
 }
