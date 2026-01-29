@@ -1,4 +1,18 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿// Aguarda o carregamento completo do DOM antes de executar o código
+$(document).ready(function () {
 
-// Write your JavaScript code.
+    // Define um atraso de 4000 milissegundos (4 segundos)
+    setTimeout(function () {
+
+        // Seleciona todos os elementos com a classe "alert"
+        // e aplica um efeito de desaparecer lentamente
+        $(".alert").fadeOut("slow", function () {
+
+            // Após o fadeOut terminar, fecha o alerta
+            // (método usado geralmente com alertas do Bootstrap)
+            $(this).alert("close");
+        });
+
+    }, 4000);
+
+});
