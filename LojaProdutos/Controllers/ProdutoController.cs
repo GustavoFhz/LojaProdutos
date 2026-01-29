@@ -46,13 +46,19 @@ namespace LojaProdutos.Controllers
 
             ViewBag.Categorias = await _categoriaInterface.BuscarCategorias();
 
-            return View(editarProdutoDto);  
+            return View(editarProdutoDto);
+        }
+
+        public async Task<IActionResult> Remover(int id)
+        {
+            var produto = await _produtoInterface.Remover(id);
+            return RedirectToAction("Index", "Produto");
         }
 
         [HttpPost]
         public async Task<IActionResult> Cadastrar(CriarProdutoDto criarProdutoDto, IFormFile foto)
         {
-            if(ModelState.IsValid) //Valida os ErrosMessage
+            if (ModelState.IsValid) //Valida os ErrosMessage
             {
                 var produto = await _produtoInterface.Cadastrar(criarProdutoDto, foto);
                 return RedirectToAction("Index", "Produto");

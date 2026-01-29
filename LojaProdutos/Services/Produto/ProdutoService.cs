@@ -116,6 +116,22 @@ namespace LojaProdutos.Services.Produto
             }
         }
 
+        public async Task<ProdutoModel> Remover(int id)
+        {
+            try
+            {
+                var produto= await BuscarProdutoPorId(id);
+                _context.Remove(produto);
+                await _context.SaveChangesAsync();
+
+                return produto;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         private string GeraCaminhoArquivo(IFormFile foto)
         {
             var codigoUnico = Guid.NewGuid().ToString();
