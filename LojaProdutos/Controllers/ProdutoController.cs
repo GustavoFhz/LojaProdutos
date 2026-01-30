@@ -55,6 +55,12 @@ namespace LojaProdutos.Controllers
             return RedirectToAction("Index", "Produto");
         }
 
+        public async Task<IActionResult> Detalhes(int id)
+        {
+            var produto = await _produtoInterface.BuscarProdutoPorId(id);
+            return View(produto);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Cadastrar(CriarProdutoDto criarProdutoDto, IFormFile foto)
         {
@@ -66,9 +72,9 @@ namespace LojaProdutos.Controllers
             }
             else
             {
-               TempData["MensagemError"] = "Ocorreu algum erro no processo!";
-               ViewBag.Categorias = await _categoriaInterface.BuscarCategorias();
-               return View(criarProdutoDto);
+                TempData["MensagemError"] = "Ocorreu algum erro no processo!";
+                ViewBag.Categorias = await _categoriaInterface.BuscarCategorias();
+                return View(criarProdutoDto);
             }
         }
 
